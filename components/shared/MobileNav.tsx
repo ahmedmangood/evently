@@ -6,11 +6,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Separator } from "@radix-ui/react-separator";
 import Image from "next/image";
+import { NavItems } from "./NavItems";
 
 export const MobileNav = () => {
   return (
-    <nav className="">
+    <nav className="flex md:hidden">
       <Sheet>
         <SheetTrigger>
           <Image
@@ -27,6 +29,8 @@ export const MobileNav = () => {
             width={128}
             height={38}
           />
+          <Separator className="border border-gray-50" />
+          <NavItems />
         </SheetContent>
       </Sheet>
     </nav>

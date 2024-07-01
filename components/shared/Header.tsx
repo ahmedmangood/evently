@@ -26,7 +26,6 @@ export const Header = () => {
         <div className="flex w-32 justify-center items-center gap-3">
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
-
             <MobileNav />
           </SignedIn>
           <SignedOut>
