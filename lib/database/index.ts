@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
-const MONGODB_URL = process.env.NEXT_PUBLIC_MONGODB_URL;
+const MONGODB_URL = process.env.MONGODB_URL;
 
 let cached = (global as any).mongoose || { con: null, promise: null };
 
 export const connectToDatabase = async () => {
   if (cached.conn) return cached.conn;
   console.log("Iam Here");
+  console.log(MONGODB_URL);
   if (!MONGODB_URL) throw new Error("MONGODB_URL is missing");
 
   cached.promise =
