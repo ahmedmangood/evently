@@ -12,7 +12,7 @@ export default async function Home() {
     page: 1,
   });
 
-  // console.log(events);
+  console.log(events);
 
   return (
     <>
