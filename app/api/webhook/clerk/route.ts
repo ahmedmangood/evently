@@ -11,7 +11,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
-
   if (!WEBHOOK_SECRET) {
     throw new Error(
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
@@ -61,7 +60,7 @@ export async function POST(req: Request) {
 
   // Create New User
   if (eventType === "user.created") {
-    const { id, email_addresses, image_url, first_name, last_name, username } =
+    const { id, email_addresses, username, first_name, last_name, image_url } =
       evt.data;
 
     const user = {
@@ -74,6 +73,7 @@ export async function POST(req: Request) {
     };
 
     const newUser = await createUser(user);
+
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {

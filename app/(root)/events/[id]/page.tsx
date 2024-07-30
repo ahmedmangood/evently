@@ -13,7 +13,6 @@ const EventDetails = async ({
   searchParams,
 }: SearchParamProps) => {
   const event = await getEventById(id);
-  console.log(event);
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
     eventId: event._id,
@@ -45,9 +44,9 @@ const EventDetails = async ({
                 <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
                   by{" "}
                   <span className="text-primary-500">
-                    {event.organizer.firstName && event.organizer.firstName}
-                    {event.organizer.lastName && event.organizer.lastName}
-                    {event.organizer.username && event.organizer.username}
+                    {event.organizer.firstName && event.organizer.lastName
+                      ? event.organizer.lastName
+                      : event.organizer.username && event.organizer.username}
                   </span>
                 </p>
               </div>
@@ -103,8 +102,8 @@ const EventDetails = async ({
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
           limit={6}
-          page={1}
-          totalPages={2}
+          page={searchParams.page as string}
+          totalPages={relatedEvents?.totalPages}
         />
       </section>
     </>
